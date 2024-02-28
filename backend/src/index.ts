@@ -1,8 +1,17 @@
 import { Hono } from 'hono'
 const app = new Hono().basePath('/api/v1')
 
+import { PrismaClient } from '@prisma/client/edge'
+import { withAccelerate } from '@prisma/extension-accelerate'
+
+
+
 // routing
-app.get('/', c => { return c.json({ message: 'Hello, World!' }) })
+app.get('/', (c) => {
+  return c.json({
+    message: 'Hello, World!'
+  })
+})
 
 app.post('/user/signup', (c) => {
   return c.json({
